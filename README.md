@@ -6,22 +6,26 @@ An API client for the Agilix/Buzz LMS API
 
 The Agilix Buzz API is RESTful API for the Buzz LMS that accepts XML by default,
 but can also accept and serve JSON. It consists of both paginated un-paginated
-data, and requires a login token cookie for almost every endpoint.
+data, and requires a login token cookie for most endpoints.
 
 The `buzzapi` package handles storing the login token as a cookie to be passed
 with each request, as well as pagination on the relevant endpoints.
 
 ## Setup
 
-See `.env_example` for the necessary environment variables. These need to be
-set in the `.env` file located in the root directory.
-
-```py
-# Create a new Client with a Session and the login token set
+```
+# Creating a new client
 client = Client(
     config["USERSPACE_USERNAME"],
     config["PASSWORD"],
 )
 
-#
+# Get resources from the GetUserActivityStream endpoint
+client.get_user_activity_stream(12345, 54321) #-> List of Activity dicts
+```
+
+# Start IDLE with initialized client for testing
+- Note that you will need to set the environment variables according to the .env_example
+```
+python -i buzzapi/client.py
 ```
