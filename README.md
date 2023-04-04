@@ -19,12 +19,16 @@ client = Client(
     config["USERSPACE_USERNAME"],
     config["PASSWORD"],
 )
+```
 
-# Get resources from the GetUserActivityStream endpoint
+## Examples
+
+### Get resources from the GetUserActivityStream endpoint
+```
 client.get_user_activity_stream(12345, 54321) #-> List of Activity dicts
 ```
 
-# Start IDLE with initialized client for testing
+### Start IDLE with initialized client for testing
 - Note that you will need to set the environment variables according to the .env_example
 ```
 python -i buzzapi/client.py
