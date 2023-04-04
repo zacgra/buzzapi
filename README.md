@@ -17,10 +17,7 @@ with each request, as well as pagination on the relevant endpoints.
 from buzzapi import Client
 
 # Creating a new client
-client = Client(
-    env["USERSPACE_USERNAME"],
-    env["PASSWORD"],
-)
+client = Client("school/myusername", "mypassword")
 ```
 
 ## Examples
