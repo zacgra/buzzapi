@@ -14,10 +14,12 @@ with each request, as well as pagination on the relevant endpoints.
 ## Setup
 
 ```
+from buzzapi import Client
+
 # Creating a new client
 client = Client(
-    config["USERSPACE_USERNAME"],
-    config["PASSWORD"],
+    env["USERSPACE_USERNAME"],
+    env["PASSWORD"],
 )
 ```
 
@@ -25,7 +27,8 @@ client = Client(
 
 ### Get resources from the GetUserActivityStream endpoint
 ```
-client.get_user_activity_stream(12345, 54321) #-> List of Activity dicts
+client.get_user_activity_stream(12345, 54321) 
+# => List of Activities
 ```
 
 ### Start IDLE with initialized client for testing
