@@ -2,11 +2,12 @@ import requests
 from urllib.parse import urljoin, urlencode
 from dotenv import dotenv_values
 from resources.user_activity_stream import UserActivityStream
+from resources.entity_gradebook_2 import EntityGradebook2
 
 env = dotenv_values(".env")
 
 
-class Client(requests.Session, UserActivityStream):
+class Client(requests.Session, UserActivityStream, EntityGradebook2):
     """Client uses session to handle connects, token cookie, and persistent
     baseurl between requests.
     """
