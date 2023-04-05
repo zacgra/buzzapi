@@ -6,7 +6,7 @@ authors = ["Zach Grammon <zachgrammon@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.8"
 requests = "^2.28.2"
 python-dotenv = "^1.0.0"
 
