@@ -22,8 +22,5 @@ class GetEnrollmentActivity:
         r = self.get(urlencode(query))
         response = r.json()["response"]
 
-        match response["code"]:
-            case "OK":
-                return response["enrollment"]["activity"]
-            case _:
-                return response
+        if response["code"]:
+            return response["enrollment"]["activity"]
