@@ -2,8 +2,8 @@ import requests
 from urllib.parse import urljoin, urlencode
 from dotenv import dotenv_values
 
-from buzzapi.resources.user_activity_stream import UserActivityStream
-from buzzapi.resources.entity_gradebook_2 import EntityGradebook2
+from buzzapi.resources.get_user_activity_stream import GetUserActivityStream
+from buzzapi.resources.get_entity_gradebook_2 import GetEntityGradebook2
 from buzzapi.resources.get_enrollment_activity import GetEnrollmentActivity
 
 env = dotenv_values(".env")
