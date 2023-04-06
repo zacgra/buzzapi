@@ -1,8 +1,11 @@
 from urllib.parse import urlencode
+from typing import Optional
 
 
 class GetUserActivityStream:
-    def get_user_activity_stream(self, userid: int, enrollmentid: int):
+    def get_user_activity_stream(
+        self, userid: int, enrollmentid: int, params: dict = {}
+    ):
         activities = []
         response = self.get_user_activity_stream_limited(userid, enrollmentid, {})
         activity = response["activities"]["activity"]
@@ -25,7 +28,7 @@ class GetUserActivityStream:
         return activities
 
     def get_user_activity_stream_limited(
-        self, userid: int, enrollmentid: int, params: dict
+        self, userid: int, enrollmentid: int, params: dict = {}
     ):
         query = {
             "cmd": "getuseractivitystream",
