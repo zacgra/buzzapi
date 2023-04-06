@@ -2,7 +2,7 @@ from urllib.parse import urlencode
 
 
 class GetEnrollmentActivity:
-    def get_enrollment_activity(self, enrollmentid: int, params: dict) -> list:
+    def get_enrollment_activity(self, enrollmentid: int, params: dict = {}) -> list:
         """This command gets the activity detail for the specified user enrollment.
 
         Args:
