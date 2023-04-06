@@ -10,7 +10,7 @@ env = dotenv_values(".env")
 
 
 class Client(
-    requests.Session, UserActivityStream, EntityGradebook2, GetEnrollmentActivity
+    requests.Session, GetUserActivityStream, GetEntityGradebook2, GetEnrollmentActivity
 ):
     """Client uses session to handle connections, token cookie, and persistent
     baseurl between requests.
