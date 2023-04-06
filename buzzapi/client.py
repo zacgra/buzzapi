@@ -5,12 +5,17 @@ from dotenv import dotenv_values
 from buzzapi.resources.get_user_activity_stream import GetUserActivityStream
 from buzzapi.resources.get_entity_gradebook_2 import GetEntityGradebook2
 from buzzapi.resources.get_enrollment_activity import GetEnrollmentActivity
+from buzzapi.resources.get_enrollment_3 import GetEnrollment3
 
 env = dotenv_values(".env")
 
 
 class Client(
-    requests.Session, GetUserActivityStream, GetEntityGradebook2, GetEnrollmentActivity
+    requests.Session,
+    GetUserActivityStream,
+    GetEntityGradebook2,
+    GetEnrollmentActivity,
+    GetEnrollment3,
 ):
     """Client uses session to handle connections, token cookie, and persistent
     baseurl between requests.
