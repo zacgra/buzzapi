@@ -6,7 +6,7 @@ from buzzapi.resources.get_user_activity_stream import GetUserActivityStream
 from buzzapi.resources.get_entity_gradebook_2 import GetEntityGradebook2
 from buzzapi.resources.get_enrollment_activity import GetEnrollmentActivity
 from buzzapi.resources.get_enrollment_3 import GetEnrollment3
-from buzzapi.resources.list_entity_enrolllments import ListEntityEnrollments
+from buzzapi.resources.list_entity_enrollments import ListEntityEnrollments
 
 env = dotenv_values(".env")
 
