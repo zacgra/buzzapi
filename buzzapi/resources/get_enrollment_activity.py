@@ -23,4 +23,8 @@ class GetEnrollmentActivity:
         response = r.json()["response"]
 
         if response["code"]:
-            return response["enrollment"]["activity"]
+            enrollment = response["enrollment"]
+            if enrollment:
+                return response["enrollment"]["activity"]
+            else:
+                return enrollment
