@@ -7,7 +7,7 @@ class GetUserActivityStream:
         self, userid: int, enrollmentid: int, params: dict = {}
     ):
         activities = []
-        response = self.get_user_activity_stream_limited(userid, enrollmentid, {})
+        response = self.get_user_activity_stream_limited(userid, enrollmentid, params)
         activity = response["activities"]["activity"]
         activities = activities + activity
 
@@ -15,9 +15,8 @@ class GetUserActivityStream:
         while endkeyPresent:
             startkey = response["activities"]["endkey"]
             response = self.get_user_activity_stream_limited(
-                userid, enrollmentid, {"startkey": startkey}
+                userid, enrollmentid, {"startkey": startkey, **params}
             )
-
             activity = response["activities"]["activity"]
             activities = activities + activity
 
@@ -37,6 +36,7 @@ class GetUserActivityStream:
             "limit": 100,
             **params,
         }
+        print(urlencode(query))
         r = self.get(urlencode(query))
         response = r.json()
         return response["response"]
