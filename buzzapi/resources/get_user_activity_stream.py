@@ -5,30 +5,31 @@ from typing import Optional
 class GetUserActivityStream:
     def get_user_activity_stream(
         self, userid: int, enrollmentid: int, params: dict = {}
-    ):
-        activities = []
-        response = self.get_user_activity_stream_limited(userid, enrollmentid, params)
-        activity = response["activities"]["activity"]
-        activities = activities + activity
+    ) -> list:
+        all_activities = []
+        activities = self.get_user_activity_stream_limited(userid, enrollmentid, params)
+        if activities:
+            all_activities = all_activities + activities["activity"]
 
-        endkeyPresent = "endkey" in response["activities"]
+        endkeyPresent = "endkey" in activities
         while endkeyPresent:
-            startkey = response["activities"]["endkey"]
-            response = self.get_user_activity_stream_limited(
+            startkey = activities["endkey"]
+            activities = self.get_user_activity_stream_limited(
                 userid, enrollmentid, {"startkey": startkey, **params}
             )
-            activity = response["activities"]["activity"]
-            activities = activities + activity
 
-            endkeyPresent = "endkey" in response["activities"]
+            if activities:
+                all_activities = all_activities + activities["activity"]
+
+            endkeyPresent = "endkey" in activities
             if endkeyPresent:
-                startkey = response["activities"]["endkey"]
+                startkey = activities["endkey"]
 
-        return activities
+        return all_activities
 
     def get_user_activity_stream_limited(
         self, userid: int, enrollmentid: int, params: dict = {}
-    ):
+    ) -> dict:
         query = {
             "cmd": "getuseractivitystream",
             "userid": userid,
@@ -38,5 +39,7 @@ class GetUserActivityStream:
         }
         print(urlencode(query))
         r = self.get(urlencode(query))
-        response = r.json()
-        return response["response"]
+        if r.ok:
+            return r.json()["response"]["activities"]
+
+        raise Exception("Error: Unable to retrieve resource", r)
