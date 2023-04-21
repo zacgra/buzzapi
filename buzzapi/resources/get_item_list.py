@@ -20,10 +20,10 @@ class GetItemList:
 
         r = self.get(urlencode(query))
         response = r.json()["response"]
-        match response["code"]:
-            case "OK":
-                return response["items"]["item"]
-            case "BadRequest":
-                return f"BadRequest: {response['message']}"
+
+        if response["code"] == "OK":
+            return response["items"]["item"]
+        if response["code"] == "BadRequest":
+            return f"BadRequest: {response['message']}"
 
         return r
