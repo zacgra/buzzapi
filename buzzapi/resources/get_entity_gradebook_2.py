@@ -21,12 +21,10 @@ class GetEntityGradebook2:
         }
 
         r = self.get(urlencode(query))
-        if r:
-            response = r.json()["response"]
-            match response["code"]:
-                case "OK":
-                    return response["enrollments"]["enrollment"]
-                case "BadRequest":
-                    return f"BadRequest: {response['message']}"
+        response = r.json()["response"]
+        if response["code"] == "OK":
+            return response["enrollments"]["enrollment"]
+        if response["code"] == "BadRequest":
+            return f"BadRequest: {response['message']}"
 
         return r
